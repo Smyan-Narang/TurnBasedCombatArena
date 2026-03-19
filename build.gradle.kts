@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("checkstyle")
 }
 
 group = "org.example"
@@ -7,6 +8,12 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    toolVersion = "10.15.0"
+    configFile = project.file("config/checkstyle/sun_checks.xml")
+    isShowViolations = true
 }
 
 dependencies {
