@@ -2,7 +2,6 @@ package tbca.ui;
 
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
-import tbca.engine.GameState;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.ActionParameters;
 import tbca.item.Item;
