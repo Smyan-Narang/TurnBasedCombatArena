@@ -6,6 +6,8 @@ import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.ActionParameters;
 import tbca.engine.action.ActionType;
 import tbca.item.Item;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class ConsoleUI implements Ui{
     private int checkErrorInt(String prompt, int min, int max) {
         while (true) {
             try {
-                System.out.print(prompt);
+                System.out.println(prompt);
                 int choice = Integer.parseInt(scanner.nextLine());
                 if (choice >= min && choice <= max) {
                     return choice;
@@ -86,7 +88,38 @@ public class ConsoleUI implements Ui{
 
     @Override
     public List<Item> promptItemSelection() {
-        return null;
+        List<Item> selectedItems = new ArrayList<>();
+
+        System.out.println("Choose 2 starting items (duplicates allowed):\n");
+
+        for (int i = 1; i <= 2; i++) {
+
+            System.out.println("Item choice " + i + ":");
+            System.out.println("1. Potion - Heal 100 HP");
+            System.out.println("2. Power Stone - Free extra use of Special Skill (no cooldown change)");
+            System.out.println("3. Smoke Bomb - Enemy attacks deal 0 damage for this and next turn");
+
+            int choice = checkErrorInt("Enter 1-3: ", 1, 3);
+            /*
+            switch (choice) {
+                case 1:
+                    selectedItems.add(new Item(ItemType.POTION));
+                    break;
+
+                case 2:
+                    selectedItems.add(new Item(ItemType.POWER_STONE));
+                    break;
+
+                case 3:
+                    selectedItems.add(new Item(ItemType.SMOKE_BOMB));
+                    break;
+            }
+            */
+            System.out.println();
+        }
+
+        System.out.println("Items selected: " + selectedItems);
+        return selectedItems;
     }
 
     @Override
