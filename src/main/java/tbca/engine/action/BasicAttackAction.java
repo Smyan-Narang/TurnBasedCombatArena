@@ -6,6 +6,11 @@ import tbca.ui.Ui;
 import static tbca.engine.action.ActionType.BASIC_ATTACK;
 
 public class BasicAttackAction implements Action {
+
+
+    public BasicAttackAction(ActionParameters actionParameters) {
+
+    }
     @Override
     public ActionType getType() {
         return BASIC_ATTACK;
