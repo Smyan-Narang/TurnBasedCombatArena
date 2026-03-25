@@ -3,15 +3,15 @@ package tbca.ui;
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
-import tbca.engine.action.ActionParameters;
 import tbca.engine.action.ActionType;
+import tbca.engine.action.parameters.ActionParameters;
 import tbca.item.Item;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 //asd
-public class ConsoleUI implements Ui{
+public class ConsoleUi implements Ui{
     private Scanner scanner = new Scanner(System.in);
 
     private int checkErrorInt(String prompt, int min, int max) {

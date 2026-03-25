@@ -10,6 +10,7 @@ import tbca.engine.action.parameters.BasicAttackParameters;
 import tbca.engine.turnorder.SpeedTurnOrderStrategy;
 import tbca.engine.turnorder.TurnOrderStrategy;
 import tbca.item.Item;
+import tbca.ui.ConsoleUi;
 import tbca.ui.Ui;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class Game {
     private TurnOrderStrategy turnOrderStrategy;
 
     private Game() {
-        //this.ui = new Ui();
+        this.ui = new ConsoleUi();
         this.turnOrderStrategy = new SpeedTurnOrderStrategy();
     }
 
