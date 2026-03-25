@@ -31,10 +31,9 @@ public class ConsoleUI implements Ui{
     }
     @Override
     public void displayMenu() {
-        System.out.println("=== Game Menu ===");
-        System.out.println("1. Start Game");
-        System.out.println("2. Options");
-        System.out.println("3. Exit");
+        System.out.println("=========================================");
+        System.out.println("       TURN-BASED COMBAT ARENA           ");
+        System.out.println("=========================================\n");
     }
 
     @Override
@@ -123,11 +122,6 @@ public class ConsoleUI implements Ui{
     }
 
     @Override
-    public void displayTurnStart(GameStateReadOnly gameStateReadOnly) {
-
-    }
-
-    @Override
     public ActionParameters getPlayerAction(GameStateReadOnly gameState) {
         System.out.println("\nChoose your action:");
         System.out.println("1. Basic Attack");
@@ -208,6 +202,8 @@ public class ConsoleUI implements Ui{
 
     @Override
     public void displayTurnEnd(GameStateReadOnly gameState) {
+        System.out.print(gameState.getPlayer().getClass() + " HP: " +
+        gameState.getPlayer().getCurrHp() + "/" + gameState.getPlayer().getMaxHp() + "|");//hp
 
     }
 }
