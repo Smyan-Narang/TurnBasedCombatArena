@@ -8,9 +8,9 @@ public abstract class Combatant {
     private final String name;
     private final int maxHp;
     private int currHp;
-    private final int baseAttack; // Made final to preserve original stat
+    private final int baseAttack;
     private int attack;
-    private final int baseDefense; // Made final to preserve original stat
+    private final int baseDefense;
     private int defense;
     private final int speed;
 
@@ -30,20 +30,14 @@ public abstract class Combatant {
         this.speed = speed;
     }
 
-    // --- ITEM COMPATIBILITY ---
-
-    /** Required by Potion.java */
     public void setHp(int hp) {
         this.setCurrHp(hp);
     }
 
-    /** Required by PowerStone.java */
     public void executeSpecialSkillFree() {
         this.specialSkillCooldown = 0;
         System.out.println(name + "'s Special Skill is now ready!");
     }
-
-    // --- EFFECT LOGIC ---
 
     public void addStatusEffect(StatusEffect effect) {
         this.effects.add(effect);
@@ -60,8 +54,6 @@ public abstract class Combatant {
         }
     }
 
-    // --- COMBAT LOGIC ---
-
     public void takeDamage(int damage) {
         if (invulnerable) {
             System.out.println(name + " is invulnerable! No damage taken.");
@@ -73,13 +65,10 @@ public abstract class Combatant {
     public void decrementCooldown() {
         if (specialSkillCooldown > 0) specialSkillCooldown--;
     }
-
-    // --- STAT RESET HELPERS (Ensures consistency after effects expire) ---
     
     public void resetAttack() { this.attack = baseAttack; }
     public void resetDefense() { this.defense = baseDefense; }
 
-    // Getters & Setters
     public String getName() { return name; }
     public int getCurrHp() { return currHp; }
     public int getMaxHp() { return maxHp; }

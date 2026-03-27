@@ -1,24 +1,15 @@
 package tbca.combatant.player.playerclass;
 
-/**
- * Defines every player class together with its base stats.
- *
- * Warrior : HP 260 | ATK 40 | DEF 20 | SPD 30
- * Wizard  : HP 200 | ATK 50 | DEF 10 | SPD 20
- */
 public enum PlayerClass {
 
     WARRIOR("Warrior", 260, 40, 20, 30),
     WIZARD ("Wizard",  200, 50, 10, 20);
-
-    // ----------------------------------------------------------------- fields
     private final String label;
     private final int maxHp;
     private final int attack;
     private final int defense;
     private final int speed;
 
-    // -------------------------------------------------------------- constructor
     PlayerClass(String label, int maxHp, int attack, int defense, int speed) {
         this.label   = label;
         this.maxHp   = maxHp;
@@ -27,7 +18,6 @@ public enum PlayerClass {
         this.speed   = speed;
     }
 
-    // ----------------------------------------------------------------- getters
     public String getLabel()   { return label; }
     public int getMaxHp()      { return maxHp; }
     public int getAttack()     { return attack; }
