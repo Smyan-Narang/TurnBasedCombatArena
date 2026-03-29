@@ -2,6 +2,7 @@ package tbca.ui;
 
 import java.util.List;
 
+import tbca.combatant.Combatant;
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
@@ -23,6 +24,7 @@ public interface Ui {
 
     void displayTurnStart(GameStateReadOnly gameState);
 
-    void displayBasicAttack();
+    void displayBasicAttack(GameStateReadOnly gameState, Combatant actor, List<Integer> target, List<Integer> dmg);
+    void displayDefend(GameStateReadOnly gameState, Combatant actor);
 
 }

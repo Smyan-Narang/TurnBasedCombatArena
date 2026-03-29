@@ -91,5 +91,20 @@ public class DisplayOnly {
         System.out.println("╚═══════════════════════════════════════╝\n");
     }
 
+    public void displayBasicAttack(GameStateReadOnly gameState, Combatant actor, List<Integer> target, List<Integer> dmg) {
+        System.out.println(actor.getName() + " performs a Basic Attack!");
+
+        for (int i = 0; i < target.size(); i++) {
+            int targetIndex = target.get(i);
+            Combatant victim = gameState.getCurrEnemies().get(targetIndex);
+
+            int damage = dmg.get(i);
+            System.out.println(victim.getName() + " takes " + damage + " damage!");
+        }
+    }
+
+    public void displayDefend(GameStateReadOnly gameState, Combatant actor) {
+        System.out.println(actor.getName() + " Defends");
+    }
 
 }
