@@ -1,4 +1,4 @@
-package tbca.ui.Input;
+package tbca.ui.InputValidator;
 
 import java.util.Scanner;
 

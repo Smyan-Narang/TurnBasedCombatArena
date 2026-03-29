@@ -4,70 +4,56 @@ import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.ActionParameters;
-import tbca.item.Item;
-import tbca.ui.Battle.TurnDisplay;
-import tbca.ui.Battle.GetPlayerAction;
-import tbca.ui.Menu.ClassSelection;
-import tbca.ui.Menu.Difficulty;
-import tbca.ui.Battle.EndingScreen;
-import tbca.ui.Menu.ItemSelection;
+import tbca.item.ItemType;
+import tbca.ui.BattleDisplay.DisplayOnly;
+import tbca.ui.BattleProcedure.Selection;
 
 import java.util.List;
 public class ConsoleUi implements Ui{
-    ClassSelection classSelection;
-    ItemSelection itemSelection;
-    Difficulty difficulty;
-    TurnDisplay turnDisplay;
-    EndingScreen endingScreen;
-    GetPlayerAction getPlayerAction;
+    Selection selection;
+    DisplayOnly displayOnly;
 
     public ConsoleUi() {
-        classSelection = new ClassSelection();
-        itemSelection = new ItemSelection();
-        difficulty = new Difficulty();
-        turnDisplay = new TurnDisplay();
-        endingScreen = new EndingScreen();
-        getPlayerAction = new GetPlayerAction();
+        selection = new Selection();
+        displayOnly = new DisplayOnly();
     }
     @Override
     public void displayMenu() {
-        System.out.println("=========================================");
-        System.out.println("       TURN-BASED COMBAT ARENA           ");
-        System.out.println("=========================================\n");
+        this.displayOnly.displayMenu();
     }
 
     @Override
     public GameDifficulty promptDifficulty() {
-        return this.difficulty.promptDifficulty();
+        return this.selection.promptDifficulty();
     }
 
     @Override
     public PlayerClass promptClassSelection() {
-        return classSelection.classChoice();
+        return selection.classChoice();
     }
 
     @Override
-    public List<Item> promptItemSelection() {
-        return itemSelection.itemSelection();
+    public List<ItemType> promptItemSelection() {
+        return selection.itemSelection();
     }
 
     @Override
     public ActionParameters getPlayerAction(GameStateReadOnly gameState) {
-        return getPlayerAction.playerAction(gameState);
+        return selection.playerAction(gameState);
         }
 
     @Override
     public void showEndingScreen(GameStateReadOnly gameState) {
-        endingScreen.showEndingScreen(gameState);
+        displayOnly.showEndingScreen(gameState);
     }
 
     @Override
     public void displayTurnEnd(GameStateReadOnly gameState) {
-        turnDisplay.displayTurnEnd(gameState);
+        displayOnly.displayTurnEnd(gameState);
     }
 
     @Override
     public void displayTurnStart(GameStateReadOnly gameState) {
-        turnDisplay.displayTurnStart(gameState);
+        displayOnly.displayTurnStart(gameState);
     }
 }

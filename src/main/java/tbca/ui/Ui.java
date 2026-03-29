@@ -5,6 +5,7 @@ import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.ActionParameters;
 import tbca.item.Item;
+import tbca.item.ItemType;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface Ui {
     void displayMenu();
     GameDifficulty promptDifficulty();
     PlayerClass promptClassSelection();
-    List<Item> promptItemSelection();
+    List<ItemType> promptItemSelection();
 
     ActionParameters getPlayerAction(GameStateReadOnly gameState);
 
@@ -22,5 +23,7 @@ public interface Ui {
     void displayTurnEnd(GameStateReadOnly gameState);
 
     void displayTurnStart(GameStateReadOnly gameState);
+
+    void displayBasicAttack();
 
 }
