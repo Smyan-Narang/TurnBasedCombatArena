@@ -11,25 +11,14 @@ import tbca.item.Item;
 
 import java.util.List;
 
-/**
- * Factory for creating Combatant instances.
- *
- * DIP  : callers depend on Combatant abstraction, not concrete classes.
- * OCP  : adding a new player class or enemy type only requires adding a
- *        case here, nothing else changes.
- * SRP  : solely responsible for combatant instantiation.
- */
 public final class CombatantFactory {
 
-    // Prevent instantiation — purely static factory
     private CombatantFactory() {}
 
     /**
-     * Create a player combatant of the given class, pre-loaded with items.
-     *
-     * @param playerClass the chosen player class
-     * @param items       up to 2 items chosen at game start (duplicates allowed)
-     * @return fully initialised Player instance
+     * @param playerClass
+     * @param items
+     * @return
      */
     public static Player createPlayer(PlayerClass playerClass, List<Item> items) {
         Player player = switch (playerClass) {
@@ -43,10 +32,8 @@ public final class CombatantFactory {
     }
 
     /**
-     * Create a fresh enemy combatant of the given type.
-     *
-     * @param enemyType the type of enemy to spawn
-     * @return fully initialised Enemy instance
+     * @param enemyType
+     * @return
      */
     public static Combatant createEnemy(EnemyType enemyType) {
         return switch (enemyType) {

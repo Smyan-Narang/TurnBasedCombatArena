@@ -7,12 +7,6 @@ import tbca.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Abstract base for all player-controlled combatants.
- * * COMPATIBILITY FIXES ADDED:
- * - setHp(int) for Potion.java
- * - executeSpecialSkillFree() for PowerStone.java
- */
 public abstract class Player extends Combatant {
 
     private final PlayerClass playerClass;
@@ -29,23 +23,14 @@ public abstract class Player extends Combatant {
         this.playerClass = playerClass;
     }
 
-    // --- ITEM COMPATIBILITY METHODS (REQUIRED) ---
-
-    /** * Required by Potion.java (it calls setHp instead of setCurrHp).
-     */
     public void setHp(int hp) {
         this.setCurrHp(hp);
     }
 
-    /** * Required by PowerStone.java.
-     * Resets cooldown so the player can use their skill immediately.
-     */
     public void executeSpecialSkillFree() {
         this.setSpecialSkillCooldown(0);
         System.out.println(getName() + "'s Special Skill is ready to use!");
     }
-
-    // --- INVENTORY MANAGEMENT ---
 
     public void addItem(Item item) {
         if (inventory.size() < 2) {
@@ -64,8 +49,6 @@ public abstract class Player extends Combatant {
 
     public boolean hasItems() { return !inventory.isEmpty(); }
 
-    // --- OVERRIDES & CONTRACTS ---
-
     @Override
     public boolean isPlayer() { return true; }
 
@@ -76,7 +59,7 @@ public abstract class Player extends Combatant {
 
     @Override
     public void takeTurn() {
-        // Handled by BattleEngine + CLI
+        // To be handled by game engine
     }
 
     public PlayerClass getPlayerClass() { return playerClass; }
