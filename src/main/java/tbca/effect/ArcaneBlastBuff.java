@@ -3,22 +3,20 @@ package tbca.effect;
 import tbca.combatant.Combatant;
 
 public class ArcaneBlastBuff extends StatusEffect {
+    private final int attackBoost = 10;
+
     public ArcaneBlastBuff() {
-        super("Arcane Blast Damage Boost", -1); // -1 means it lasts forever
+        super("Arcane Power", 999); // 999 acts as the end of the level
     }
 
-    @Override
+    
     public void applyEffect(Combatant target) {
-        target.setAttack(target.getAttack() + 10); 
+        target.setAttack(target.getAttack() + attackBoost);
+        System.out.println(target.getName() + " absorbs arcane energy! Attack increased by 10.");
     }
 
-    @Override
+    
     public void removeEffect(Combatant target) {
-        target.setAttack(target.getAttack() - 10); 
-    }
-
-    @Override
-    public void tick(Combatant target) {
-        // This effect doesn't expire on its own
+        target.setAttack(target.getAttack() - attackBoost);
     }
 }

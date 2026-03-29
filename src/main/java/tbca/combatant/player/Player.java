@@ -1,11 +1,11 @@
 package tbca.combatant.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tbca.combatant.Combatant;
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.item.Item;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Player extends Combatant {
 

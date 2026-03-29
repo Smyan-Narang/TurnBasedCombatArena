@@ -1,9 +1,10 @@
 package tbca.combatant.player.playerclass;
 
+import java.util.List;
+
 import tbca.combatant.Combatant;
 import tbca.combatant.player.Player;
 import tbca.effect.ArcaneBlastBuff;
-import java.util.List;
 
 public class Wizard extends Player {
     public Wizard() {
