@@ -64,6 +64,7 @@ public class Game {
                 }
                 action.execute(this.ui, gameState);
             }
+            // TODO: deal with status effects decrement
         }
 
         this.ui.displayTurnEnd(gameState);
