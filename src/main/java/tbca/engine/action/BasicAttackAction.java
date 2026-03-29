@@ -1,7 +1,7 @@
 package tbca.engine.action;
 
 import tbca.engine.GameState;
-import tbca.engine.action.parameters.ActionParameters;
+import tbca.engine.action.parameters.BasicAttackParameters;
 import tbca.ui.Ui;
 
 import static tbca.engine.action.ActionType.BASIC_ATTACK;
@@ -9,7 +9,7 @@ import static tbca.engine.action.ActionType.BASIC_ATTACK;
 public class BasicAttackAction implements Action {
 
 
-    public BasicAttackAction(ActionParameters actionParameters) {
+    public BasicAttackAction(BasicAttackParameters actionParameters) {
 
     }
     @Override

@@ -1,11 +1,11 @@
 package tbca.engine.action;
 
 import tbca.engine.GameState;
-import tbca.engine.action.parameters.ActionParameters;
+import tbca.engine.action.parameters.SpecialSkillParameters;
 import tbca.ui.Ui;
 
 public class SpecialSkillAction implements Action {
-    public SpecialSkillAction(ActionParameters actionParameters) {
+    public SpecialSkillAction(SpecialSkillParameters actionParameters) {
 
     }
 

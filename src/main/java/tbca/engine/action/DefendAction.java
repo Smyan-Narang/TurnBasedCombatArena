@@ -1,12 +1,12 @@
 package tbca.engine.action;
 
 import tbca.engine.GameState;
-import tbca.engine.action.parameters.ActionParameters;
+import tbca.engine.action.parameters.DefendParameters;
 import tbca.ui.Ui;
 
 public class DefendAction implements Action {
 
-    public DefendAction(ActionParameters actionParameters) {
+    public DefendAction(DefendParameters actionParameters) {
 
     }
 
