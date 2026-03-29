@@ -7,7 +7,6 @@ public class InputValidator {
     public InputValidator(Scanner scanner) {
         this.scanner = scanner;
     }
-
     public int getIntInput(String prompt, int min, int max) {
         while (true) {
             try {

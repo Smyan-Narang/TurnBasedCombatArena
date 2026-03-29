@@ -15,7 +15,7 @@ public interface Ui {
     void displayMenu();
     GameDifficulty promptDifficulty();
     PlayerClass promptClassSelection();
-    List<Item> promptItemSelection();
+    List<ItemType> promptItemSelection();
 
     ActionParameters getPlayerAction(GameStateReadOnly gameState);
 

@@ -2,6 +2,8 @@ package tbca.ui;
 
 import tbca.combatant.Combatant;
 import tbca.engine.GameStateReadOnly;
+import tbca.item.ItemType;
+
 import java.util.List;
 
 public class DisplayOnly {
@@ -104,6 +106,9 @@ public class DisplayOnly {
     }
     public void displayDefend(GameStateReadOnly gameState, Combatant actor) {
         System.out.println(actor.getName() + " Defends");
+    }
+    public void displayItem(GameStateReadOnly gameState,Combatant actor, ItemType item) {
+        System.out.println(actor.getName() + " uses " + item.getDisplayName());
     }
 
 }

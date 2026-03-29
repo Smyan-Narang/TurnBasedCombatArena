@@ -5,7 +5,6 @@ import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.*;
 import tbca.item.ItemType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
