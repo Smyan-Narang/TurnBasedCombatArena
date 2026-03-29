@@ -1,11 +1,10 @@
-package tbca.ui.BattleProcedure;
+package tbca.ui;
 
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.*;
 import tbca.item.ItemType;
-import tbca.ui.InputValidator.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;

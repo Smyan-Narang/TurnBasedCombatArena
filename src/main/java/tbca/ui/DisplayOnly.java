@@ -1,4 +1,4 @@
-package tbca.ui.BattleDisplay;
+package tbca.ui;
 
 import tbca.combatant.Combatant;
 import tbca.engine.GameStateReadOnly;

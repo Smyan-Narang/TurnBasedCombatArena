@@ -5,8 +5,6 @@ import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.ActionParameters;
 import tbca.item.ItemType;
-import tbca.ui.BattleDisplay.DisplayOnly;
-import tbca.ui.BattleProcedure.Selection;
 
 import java.util.List;
 public class ConsoleUi implements Ui{
