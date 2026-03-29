@@ -3,17 +3,21 @@ package tbca.effect;
 import tbca.combatant.Combatant;
 
 public class DefendEffect extends StatusEffect {
+    private final int defenseBoost = 10;
+
     public DefendEffect() {
-        super("Defend", 2); 
+        super("Defending", 2); 
     }
 
-    @Override
+    
     public void applyEffect(Combatant target) {
-        target.setDefense(target.getDefense() + 10); 
+        target.setDefense(target.getDefense() + defenseBoost);
+        System.out.println(target.getName() + " braces for impact. Defense increased by 10.");
     }
 
-    @Override
+  
     public void removeEffect(Combatant target) {
-        target.setDefense(target.getDefense() - 10); 
+        target.setDefense(target.getDefense() - defenseBoost);
+        System.out.println(target.getName() + " lowered their guard. Defense returned to normal.");
     }
 }
