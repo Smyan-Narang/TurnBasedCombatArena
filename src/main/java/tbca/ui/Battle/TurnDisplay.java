@@ -11,7 +11,7 @@ public class TurnDisplay {
     }
 
     public void displayTurnStart(GameStateReadOnly gameState) {
-        System.out.printf("=== Wave %d ===%n", gameState.currWave());
+        System.out.printf("=== Wave %d ===\n", gameState.currWave());
     }
 
     private void displayPlayerAndEnemyStats(GameStateReadOnly gameState) {
@@ -26,10 +26,16 @@ public class TurnDisplay {
         List<Combatant> enemies = gameState.getCurrEnemies();
         for (int i = 0; i < enemies.size(); i++) {
             Combatant enemy = enemies.get(i);
-            System.out.printf("Enemy %c HP: %d",
+            System.out.printf("Goblin %c HP: %d",
                     (char)('A' + i),
                     enemy.getCurrHp()
             );
+            /*
+            if(enemy.isStun())
+            {
+                System.out.print("[Stunned]");
+            }
+            */
             if (i < enemies.size() - 1) {
                 System.out.print(" | ");
             }
@@ -38,7 +44,14 @@ public class TurnDisplay {
     }
 
     private void displayItemsAndCooldown(GameStateReadOnly gameState) {
-        System.out.printf("Items/Cooldowns: N/A (Wave %d)%n%n", gameState.currWave());
+        /*
+        PrintStream printf = System.out.printf("Potion: %d | Smoke Bomb: %d | Special Skills Cooldown: %d Round",
+                gameState.getPlayer().getItemCount(ItemType.POTION),
+                gameState.getPlayer().getItemCount(ItemType.SMOKE_BOMB),
+                gameState.getPlayer()
+        );
+         */
+        System.out.println();
     }
 
 

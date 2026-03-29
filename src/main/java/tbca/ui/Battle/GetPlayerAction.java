@@ -9,8 +9,6 @@ import tbca.engine.action.parameters.UseItemParameters;
 import tbca.item.ItemType;
 import tbca.ui.Input.InputValidator;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class GetPlayerAction {
@@ -21,32 +19,25 @@ public class GetPlayerAction {
     }
 
     public ActionParameters playerAction(GameStateReadOnly gameState) {
-        while (true) {
-            System.out.println("\nChoose your action:");
-            System.out.println("1. Basic Attack");
-            System.out.println("2. Defend");
-            System.out.println("3. Use Item");
-            System.out.println("4. Special Skill");
+        System.out.println("\nChoose your action:");
+        System.out.println("1. Basic Attack");
+        System.out.println("2. Defend");
+        System.out.println("3. Use Item");
+        System.out.println("4. Special Skill");
 
-            int choice = inputValidator.getIntInput("Enter 1-4: ", 1, 4);
+        int choice = inputValidator.getIntInput("Enter 1-4: ", 1, 4);
 
-            switch (choice) {
-                case 1:
-                    return new BasicAttackParameters(gameState.getPlayer(), promptTargetEnemyIndex(gameState));
-                case 2:
-                    return new DefendParameters(gameState.getPlayer());
-                case 3:
-                    if (!hasUsableItems(gameState)) {
-                        System.out.println("No usable items available. Choose another action.");
-                        continue;
-                    }
-                    return new UseItemParameters(gameState.getPlayer(), promptItemType());
-                case 4:
-                    return new SpecialSkillParameters(gameState.getPlayer(), promptTargetEnemyIndex(gameState));
-                default:
-                    throw new IllegalStateException("Unexpected action choice: " + choice);
-            }
+        switch (choice) {
+            case 1:
+                return new BasicAttackParameters(gameState.getPlayer(), promptTargetEnemyIndex(gameState));
+            case 2:
+                return new DefendParameters(gameState.getPlayer());
+            case 3:
+                return new UseItemParameters(gameState.getPlayer(), promptItemType());
+            case 4:
+                return new SpecialSkillParameters(gameState.getPlayer(), promptTargetEnemyIndex(gameState));
         }
+        return null;
     }
 
     private int promptTargetEnemyIndex(GameStateReadOnly gameState) {
@@ -66,41 +57,14 @@ public class GetPlayerAction {
 
         int itemChoice = inputValidator.getIntInput("Enter 1-3: ", 1, 3);
 
-        return switch (itemChoice) {
-            case 1 -> ItemType.POTION;
-            case 2 -> ItemType.POWER_STONE;
-            case 3 -> ItemType.SMOKE_BOMB;
-            default -> throw new IllegalStateException("Unexpected item choice: " + itemChoice);
-        };
-    }
-
-    private boolean hasUsableItems(GameStateReadOnly gameState) {
-        Object player = gameState.getPlayer();
-
-        try {
-            Method getItemCount = player.getClass().getMethod("getItemCount", ItemType.class);
-            for (ItemType itemType : ItemType.values()) {
-                Object countObj = getItemCount.invoke(player, itemType);
-                if (countObj instanceof Number count && count.intValue() > 0) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (ReflectiveOperationException ignored) {
-            // Fall through to alternate API checks.
+        switch (itemChoice) {
+            case 1:
+                return ItemType.POTION;
+            case 2:
+                return ItemType.POWER_STONE;
+            case 3:
+                return ItemType.SMOKE_BOMB;
         }
-
-        try {
-            Method getItems = player.getClass().getMethod("getItems");
-            Object itemsObj = getItems.invoke(player);
-            if (itemsObj instanceof Collection<?> items) {
-                return !items.isEmpty();
-            }
-        } catch (ReflectiveOperationException ignored) {
-            // Fall through to permissive default.
-        }
-
-        // Inventory API is not available yet, so allow item selection for now.
-        return true;
+        return null;
     }
 }
