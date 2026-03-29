@@ -1,12 +1,14 @@
 package tbca.engine.action;
 
+import tbca.combatant.Combatant;
 import tbca.engine.GameState;
 import tbca.ui.Ui;
 
-public interface Action {
+public abstract class Action {
+    private Combatant actor;
 
-    ActionType getType();
+    public abstract ActionType getType();
 
-    void execute(Ui ui, GameState gameState);
+    public abstract void execute(Ui ui, GameState gameState);
 
 }
