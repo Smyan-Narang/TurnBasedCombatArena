@@ -4,5 +4,6 @@ import tbca.combatant.Combatant;
 
 public interface Item {
     void use(Combatant user, Combatant target);
-    String getName(); 
+    String getName();
+    ItemType getType();
 }

@@ -13,4 +13,8 @@ public class Potion implements Item{
     public String getName(){
         return "Potion";
     }
+
+    public ItemType getType(){
+        return ItemType.POTION;
+    }
 }

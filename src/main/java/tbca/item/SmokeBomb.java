@@ -14,4 +14,8 @@ public class SmokeBomb implements Item {
     public String getName() {
         return "Smoke Bomb";
     }
+
+    public ItemType getType() {
+        return ItemType.SMOKE_BOMB;
+    }
 }

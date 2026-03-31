@@ -7,8 +7,7 @@ public class PowerStone implements Item {
 
    @Override
    public void use(Combatant user, Combatant target) {
-       if (user instanceof Player) {
-           Player userPlayer = (Player) user;
+       if (user instanceof Player userPlayer) {
            userPlayer.executeSpecialSkillFree(target);
        }
    }
@@ -16,4 +15,8 @@ public class PowerStone implements Item {
    public String getName(){
    return "Power Stone";
    }
+
+    public ItemType getType(){
+        return ItemType.POWER_STONE;
+    }
 }
