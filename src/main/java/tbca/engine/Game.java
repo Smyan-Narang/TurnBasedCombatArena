@@ -57,16 +57,17 @@ public class Game {
                 if (!gameState.allCurrWaveEnemiesDead() || gameState.hasGameEnded())
                     break; // break if all enemies in this wave is dead, or player dies
 
-                Action action;
-                if (combatant.isPlayer()) {
-                    action = ActionFactory.create(selection);
-                } else {
-                    action = ActionFactory.create(new BasicAttackParameters(combatant));
-                }
+                // if is player, go with selected action. else, enemies can only basic attack
+                Action action = combatant.isPlayer() ? ActionFactory.create(selection)
+                                                        : ActionFactory.create(new BasicAttackParameters(combatant));
+
                 ActionResults actionResults = action.execute(gameState);
                 ui.displayActionResults(gameState, actionResults);
             }
-            // TODO: deal with status effects decrement
+            // tick all active effects for all live combatants
+            for (Combatant combatant : turnOrder) {
+                combatant.tickEffects();
+            }
         }
 
         this.ui.displayTurnEnd(gameState);
