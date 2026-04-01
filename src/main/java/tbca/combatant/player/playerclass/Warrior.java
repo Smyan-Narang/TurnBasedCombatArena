@@ -1,8 +1,9 @@
 package tbca.combatant.player.playerclass;
 
 import tbca.combatant.Combatant;
-import tbca.combatant.player.Player;
+import  tbca.combatant.player.Player;
 import tbca.effect.StunEffect;
+import tbca.engine.logic.utility.DamageUtility;
 
 public class Warrior extends Player {
     public Warrior() {
@@ -10,7 +11,7 @@ public class Warrior extends Player {
     }
 
     private void performShieldBash(Combatant target) {
-        int damage = Math.max(0, getAttack() - target.getDefense());
+        int damage = DamageUtility.computeBasicAttackDamage(this, target);
         target.takeDamage(damage);
         
         target.addStatusEffect(new StunEffect()); 

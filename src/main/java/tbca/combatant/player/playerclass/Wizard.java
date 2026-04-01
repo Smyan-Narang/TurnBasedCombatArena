@@ -5,6 +5,7 @@ import java.util.List;
 import tbca.combatant.Combatant;
 import tbca.combatant.player.Player;
 import tbca.effect.ArcaneBlastBuff;
+import tbca.engine.logic.utility.DamageUtility;
 
 public class Wizard extends Player {
     public Wizard() {
@@ -14,7 +15,7 @@ public class Wizard extends Player {
         int kills = 0;
         for (Combatant enemy : enemies) {
             if (!enemy.isAlive()) continue;
-            int damage = Math.max(0, getAttack() - enemy.getDefense());
+            int damage = DamageUtility.computeBasicAttackDamage(this, enemy);
             enemy.takeDamage(damage);
             
             if (!enemy.isAlive()) {
