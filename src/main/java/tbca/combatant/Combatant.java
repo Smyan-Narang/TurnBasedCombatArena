@@ -48,7 +48,7 @@ public abstract class Combatant {
         effect.applyEffect(this);
     }
 
-    public void tickEffects() {
+    private void tickEffects() {
         for (int i = effects.size() - 1; i >= 0; i--) {
             StatusEffect e = effects.get(i);
             e.decrementTurn();
@@ -57,9 +57,11 @@ public abstract class Combatant {
                 effects.remove(i);
             }
         }
-        if (specialSkillCooldown > 0) {
-            specialSkillCooldown--;
-        }
+    }
+
+    public void tickAll() {
+        tickEffects();
+        decrementCooldown();
     }
 
     public int getRemainingEffectTurn() {
@@ -77,6 +79,10 @@ public abstract class Combatant {
             return;
         }
         setCurrHp(getCurrHp() - damage);
+    }
+
+    private void decrementCooldown() {
+        if (specialSkillCooldown > 0) specialSkillCooldown--;
     }
     
     public void resetAttack() { this.attack = baseAttack; }
