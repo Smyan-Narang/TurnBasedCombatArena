@@ -14,6 +14,7 @@ public class GameState implements GameStateReadOnly {
     private List<Combatant> currEnemies = new ArrayList<>();;
 
     private int currWave = 0; // 1-indexed, 0 signifies no wave started
+    private int currTurn = 0;
 
     public GameState(Combatant player, GameDifficulty difficulty) {
         this.player = player;
@@ -50,9 +51,18 @@ public class GameState implements GameStateReadOnly {
         return true;
     }
 
+    public void incrementTurn() {
+        currTurn++;
+    }
+
     @Override
     public int currWave() {
         return currWave;
+    }
+
+    @Override
+    public int getCurrTurn() {
+        return currTurn;
     }
 
     @Override
