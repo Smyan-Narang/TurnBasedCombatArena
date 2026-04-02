@@ -28,7 +28,7 @@ public class SpecialSkillAction extends Action {
             player.executeSpecialSkill(gameState, targetEnemyIndex);
         }
         else{
-            System.out.println(actor.getName() + " cannto use a special skill!");
+            System.out.println(actor.getName() + " cannot use a special skill!");
         }
         return new SpecialSkillResults(actor);
     }
