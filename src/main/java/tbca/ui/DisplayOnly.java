@@ -26,7 +26,7 @@ public class DisplayOnly {
     }
 
     public void displayTurnStart(GameStateReadOnly gameState) {
-        System.out.printf("=== Wave %d Turn %d ===\n", gameState.currWave(), 5);
+        System.out.printf("=== Wave %d Turn %d ===\n", gameState.currWave(), gameState.getCurrTurn());
         System.out.println("Player: " + gameState.getPlayer().getCurrHp() + " HP");
 
         // Print enemies
