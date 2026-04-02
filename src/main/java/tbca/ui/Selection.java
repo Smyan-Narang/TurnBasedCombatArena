@@ -1,5 +1,6 @@
 package tbca.ui;
 
+import tbca.combatant.Combatant;
 import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
@@ -111,9 +112,18 @@ public class Selection {
         System.out.println("2. Defend");
         System.out.println("3. Use Item");
         System.out.println("4. Special Skill");
-
-        int choice = inputValidator.getIntInput("Enter 1-4: ", 1, 4);
-
+        int choice;
+        while(true)
+        {
+            choice = inputValidator.getIntInput("Enter 1-4: ", 1, 4);
+            if(gameState.getPlayer().getSpecialSkillCooldown() != 0 && choice == 4)
+            {
+                System.out.println("Cannot use Special Skill yet");
+            }
+            else{
+                break;
+            }
+        }
         return switch (choice) {
             case 1 -> new BasicAttackParameters(gameState.getPlayer(), promptTargetEnemyIndex(gameState));
             case 2 -> new DefendParameters(gameState.getPlayer());
@@ -125,10 +135,17 @@ public class Selection {
 
     private int promptTargetEnemyIndex(GameStateReadOnly gameState) {
         int enemies = gameState.getCurrEnemies().size();
-        if (enemies <= 1) {
-            return 0;
+        int targetChoice = 0;
+        while(true)
+        {
+            targetChoice = inputValidator.getIntInput("Select target enemy (1-" + enemies + "): ", 1, enemies);
+            if(gameState.getCurrEnemies().get(targetChoice - 1).isDead()){
+                System.out.println("Target is Dead");
+            }
+            else{
+                break;
+            }
         }
-        int targetChoice = inputValidator.getIntInput("Select target enemy (1-" + enemies + "): ", 1, enemies);
         return targetChoice - 1;
     }
 

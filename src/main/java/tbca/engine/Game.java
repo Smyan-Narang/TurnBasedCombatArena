@@ -56,7 +56,7 @@ public class Game {
             for (Combatant combatant : turnOrder) {
                 if (gameState.allCurrWaveEnemiesDead() || gameState.hasGameEnded())
                     break; // break if all enemies in this wave is dead, or player dies
-                if (combatant.isAlive() || !combatant.canAct())
+                if (!combatant.isAlive() || !combatant.canAct())
                     continue; // if current combatant died midway through this turn or can't move, skip him
 
                 // if is player, go with selected action. else, enemies can only basic attack
@@ -70,9 +70,8 @@ public class Game {
             for (Combatant combatant : turnOrder) {
                 combatant.tickEffects();
             }
+            this.ui.displayTurnEnd(gameState);
         }
-
-        this.ui.displayTurnEnd(gameState);
     }
 
     private void initialize() {
