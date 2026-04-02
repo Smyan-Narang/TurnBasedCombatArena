@@ -78,10 +78,6 @@ public abstract class Combatant {
         }
         setCurrHp(getCurrHp() - damage);
     }
-
-    public void decrementCooldown() {
-        if (specialSkillCooldown > 0) specialSkillCooldown--;
-    }
     
     public void resetAttack() { this.attack = baseAttack; }
     public void resetDefense() { this.defense = baseDefense; }
