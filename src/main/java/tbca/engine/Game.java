@@ -1,5 +1,7 @@
 package tbca.engine;
 
+import java.util.List;
+
 import tbca.combatant.Combatant;
 import tbca.combatant.CombatantFactory;
 import tbca.combatant.player.playerclass.PlayerClass;
@@ -13,8 +15,6 @@ import tbca.engine.logic.turnorder.TurnOrderStrategy;
 import tbca.item.ItemType;
 import tbca.ui.ConsoleUi;
 import tbca.ui.Ui;
-
-import java.util.List;
 
 public class Game {
     private static Game gameInstance;
@@ -69,8 +69,7 @@ public class Game {
             }
             // tick all active effects for all live combatants
             for (Combatant combatant : turnOrder) {
-                combatant.tickEffects();
-                combatant.decrementCooldown();
+                combatant.tickAll();
             }
             this.ui.displayTurnEnd(gameState);
         }
