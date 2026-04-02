@@ -17,5 +17,7 @@ public interface GameStateReadOnly {
 
     boolean hasGameEnded();
 
-    public boolean isPlayerAlive();
+    boolean isPlayerAlive();
+
+    int getCurrTurn();
 }

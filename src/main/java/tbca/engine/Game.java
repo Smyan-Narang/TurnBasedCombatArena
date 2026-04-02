@@ -50,6 +50,7 @@ public class Game {
         // continue wave while enemies in curr wave are alive and game has not ended
         while (!gameState.allCurrWaveEnemiesDead() && !gameState.hasGameEnded()) {
             this.ui.displayTurnStart((GameStateReadOnly) gameState);
+            this.gameState.incrementTurn();
             ActionParameters selection = this.ui.getPlayerAction((GameStateReadOnly) gameState);
             List<Combatant> turnOrder = turnOrderStrategy.determineTurnOrder(gameState);
 
