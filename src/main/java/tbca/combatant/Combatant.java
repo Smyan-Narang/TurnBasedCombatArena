@@ -2,7 +2,7 @@ package tbca.combatant;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import tbca.engine.GameState;
 import tbca.effect.StatusEffect;
 
 public abstract class Combatant {
@@ -35,10 +35,7 @@ public abstract class Combatant {
         this.setCurrHp(hp);
     }
 
-    public void executeSpecialSkillFree() {
-        this.specialSkillCooldown = 0;
-        System.out.println(name + "'s Special Skill is now ready!");
-    }
+
 
     public void addStatusEffect(StatusEffect effect) {
         this.effects.add(effect);
@@ -54,6 +51,15 @@ public abstract class Combatant {
                 effects.remove(i);
             }
         }
+    }
+
+    public int getRemainingEffectTurn() {
+        for (StatusEffect e : effects) {
+            if (e instanceof tbca.effect.StunEffect) {
+                return e.getRemainingTurns();
+            }
+        }
+        return 0;
     }
 
     public void takeDamage(int damage) {

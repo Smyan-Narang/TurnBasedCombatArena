@@ -23,13 +23,9 @@ public abstract class Player extends Combatant {
         this.playerClass = playerClass;
     }
 
+    @Override
     public void setHp(int hp) {
         this.setCurrHp(hp);
-    }
-
-    public void executeSpecialSkillFree() {
-        this.setSpecialSkillCooldown(0);
-        System.out.println(getName() + "'s Special Skill is ready to use!");
     }
 
     public void addItem(Item item) {
@@ -55,7 +51,20 @@ public abstract class Player extends Combatant {
     @Override
     public boolean isAlive() { return getCurrHp() > 0; }
 
-    public abstract void executeSpecialSkill();
+    public Item consumeItem(tbca.item.ItemType itemType){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getType() == itemType){
+                return inventory.remove(i);
+            }
+        }
+        //Item not found
+        return null;
+    }
+
+    //uses cooldown
+    public abstract void executeSpecialSkill(tbca.engine.GameState gameState, int targetIndex);
+    //no cooldown
+    public abstract void executeSpecialSkillFree(tbca.engine.GameState gameState, int targetIndex);
 
     @Override
     public void takeTurn() {

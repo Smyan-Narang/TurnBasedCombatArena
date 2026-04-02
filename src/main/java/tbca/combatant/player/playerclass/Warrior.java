@@ -1,27 +1,45 @@
 package tbca.combatant.player.playerclass;
 
 import tbca.combatant.Combatant;
-import tbca.combatant.player.Player;
+import  tbca.combatant.player.Player;
 import tbca.effect.StunEffect;
+import tbca.engine.logic.utility.DamageUtility;
 
 public class Warrior extends Player {
     public Warrior() {
         super(PlayerClass.WARRIOR);
     }
 
-    public void executeSpecialSkill(Combatant target) {
-        int damage = Math.max(0, getAttack() - target.getDefense());
+    private void performShieldBash(Combatant target) {
+        int damage = DamageUtility.computeBasicAttackDamage(this, target);
         target.takeDamage(damage);
         
-        // Use the effect from your effect.zip
-        target.addStatusEffect(new StunEffect());
+        target.addStatusEffect(new StunEffect()); 
         
         System.out.printf("%s uses Shield Bash! %s is STUNNED.%n", getName(), target.getName());
-        setSpecialSkillCooldown(3);
     }
 
     @Override
-    public void executeSpecialSkill() {
-        System.out.println("Warrior needs a target for Shield Bash.");
+    public void executeSpecialSkill(tbca.engine.GameState gameState, int targetIndex) {
+        if (getSpecialSkillCooldown() == 0) {
+            if (targetIndex >= 0 && targetIndex < gameState.getCurrEnemies().size()) {
+                Combatant target = gameState.getCurrEnemies().get(targetIndex);
+                performShieldBash(target);
+                setSpecialSkillCooldown(3);
+            } else {
+                System.out.println("Invalid target selected");
+            }
+        } else {
+            System.out.println("Skill is still on cooldown");
+        }
     }
+
+    @Override
+    public void executeSpecialSkillFree(tbca.engine.GameState gameState, int targetIndex) {
+        Combatant target = gameState.getCurrEnemies().get(targetIndex);
+        performShieldBash(target);
+        System.out.println("(Power Stone) " + getName() + " activated a bonus Shield Bash!");
+    }
+
+
 }
