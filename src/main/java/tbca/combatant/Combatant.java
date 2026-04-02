@@ -2,7 +2,7 @@ package tbca.combatant;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import tbca.engine.GameState;
 import tbca.effect.StatusEffect;
 
 public abstract class Combatant {
@@ -35,8 +35,7 @@ public abstract class Combatant {
         this.setCurrHp(hp);
     }
 
-    public void executeSpecialSkillFree() {
-    }
+
 
     public void addStatusEffect(StatusEffect effect) {
         this.effects.add(effect);

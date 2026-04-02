@@ -2,13 +2,14 @@ package tbca.item;
 
 import tbca.combatant.Combatant;
 import tbca.combatant.player.Player;
+import tbca.engine.GameState;
 
 public class PowerStone implements Item {
 
    @Override
-   public void use(Combatant user, Combatant target) {
+   public void use(Combatant user, GameState gameState, int targetIndex) {
        if (user instanceof Player userPlayer) {
-           userPlayer.executeSpecialSkillFree(target);
+           userPlayer.executeSpecialSkillFree(gameState, targetIndex);
        }
    }
    @Override

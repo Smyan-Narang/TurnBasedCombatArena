@@ -10,6 +10,10 @@ public record SpecialSkillResults(Combatant actor,
                                   List<Integer> targets,
                                   List<Integer> dmg,
                                   List<StatusEffect> statusEffects) implements ActionResults {
+    //If here are no targets/damages/effects at all
+    public SpecialSkillResults(Combatant actor){
+        this(actor, List.of(), List.of(), List.of());
+    }
     @Override
     public ActionType actionType() {
         return ActionType.SPECIAL_SKILL;

@@ -5,6 +5,7 @@ import tbca.combatant.player.playerclass.PlayerClass;
 import tbca.engine.GameDifficulty;
 import tbca.engine.GameStateReadOnly;
 import tbca.engine.action.parameters.ActionParameters;
+import tbca.engine.action.results.ActionResults;
 import tbca.item.ItemType;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class ConsoleUi implements Ui{
     @Override
     public ActionParameters getPlayerAction(GameStateReadOnly gameState) {
         return selection.playerAction(gameState);
-        }
+    }
 
     @Override
     public void showEndingScreen(GameStateReadOnly gameState) {
@@ -52,10 +53,19 @@ public class ConsoleUi implements Ui{
     }
 
     @Override
+    public void displayActionResults(GameStateReadOnly gameState, ActionResults actionResults) {
+        displayOnly.displayAction(gameState,actionResults);
+    }
+    @Override
     public void displayTurnStart(GameStateReadOnly gameState) {
         displayOnly.displayTurnStart(gameState);
     }
 
+    @Override
+    public void displayEnemyDefeated(GameStateReadOnly gameState,int enemyIndex) {
+        displayOnly.displayEnemyDefeated(gameState,enemyIndex);
+    }
+ /*
     @Override
     public void displayBasicAttack(GameStateReadOnly gameState, Combatant actor, List<Integer> target, List<Integer> dmg) {
         displayOnly.displayBasicAttack(gameState,actor,target,dmg);
@@ -69,4 +79,6 @@ public class ConsoleUi implements Ui{
     public void displayUseItem(GameStateReadOnly gameState,Combatant actor, ItemType item) {
         displayOnly.displayItem(gameState,actor,item);
     }
+
+ */
 }
