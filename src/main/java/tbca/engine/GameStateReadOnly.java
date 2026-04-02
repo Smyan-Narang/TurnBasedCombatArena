@@ -20,4 +20,6 @@ public interface GameStateReadOnly {
     boolean isPlayerAlive();
 
     int getCurrTurn();
+
+    int getTotalWaves();
 }

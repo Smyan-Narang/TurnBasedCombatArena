@@ -66,6 +66,11 @@ public class GameState implements GameStateReadOnly {
     }
 
     @Override
+    public int getTotalWaves() {
+        return difficulty.getEnemySpawnList().size();
+    }
+
+    @Override
     public GameDifficulty getDifficulty() {
         return difficulty;
     }
