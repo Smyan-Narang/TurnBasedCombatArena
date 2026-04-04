@@ -36,7 +36,7 @@ public class Wizard extends Player {
         for(int i = 0; i < kills; i++){
             ArcaneBlastBuff buff = new ArcaneBlastBuff();
             this.addStatusEffect(buff);
-            appliedEffects.add(buff);
+
         }
         return new SpecialSkillResults(this, targetIndice, damageDone, appliedEffects);
     }
