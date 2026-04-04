@@ -157,9 +157,6 @@ public class Selection {
                 if (player.specialSkillNeedsTarget()){
                     targetIndex = promptTargetEnemyIndex(gameState);
                 }
-                else{
-                    System.out.println(player.getName() + " applies a skill on all enemies currently in combat!");
-                }
                 yield new SpecialSkillParameters(player, targetIndex);
             }
             default -> null;

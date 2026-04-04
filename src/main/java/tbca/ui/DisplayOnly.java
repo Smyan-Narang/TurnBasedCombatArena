@@ -107,17 +107,17 @@ public class DisplayOnly {
     }
 
     private void displayLossMessage() {
-        System.out.println("╔═══════════════════════════════════════╗");
-        System.out.println("║           YOU LOST!                   ║");
-        System.out.println("║    Better luck next time!             ║");
-        System.out.println("╚═══════════════════════════════════════╝\n");
+        System.out.println("=========================================");
+        System.out.println("              YOU LOST!                  ");
+        System.out.println("         Better luck next time!          ");
+        System.out.println("=========================================\n");
     }
 
     private void displayVictoryMessage() {
-        System.out.println("╔═══════════════════════════════════════╗");
-        System.out.println("║           YOU WON!                    ║");
-        System.out.println("║    Congratulations on your victory!   ║");
-        System.out.println("╚═══════════════════════════════════════╝\n");
+        System.out.println("=========================================");
+        System.out.println("              YOU WON!                   ");
+        System.out.println("       Congratulations on your victory!  ");
+        System.out.println("=========================================\n");
     }
 
     public void displayAction(GameStateReadOnly gameState, ActionResults actionResults) {
@@ -184,27 +184,17 @@ public class DisplayOnly {
     private void displaySpecialSkill(GameStateReadOnly gameState, Combatant actor,
                                      List<Integer> targets, List<Integer> damage,
                                      List<StatusEffect> statusEffects) {
-        String skillName = actor.getClass().getSimpleName().equals("Warrior") ? "Shield Bash" : "Arcane Blast";
-        System.out.print(actor.getName() + " uses " + skillName + "! -> ");
         for (int i = 0; i < targets.size(); i++) {
             int targetIndex = targets.get(i);
             Combatant victim = gameState.getCurrEnemies().get(targetIndex);
             int dmgAmount = damage.get(i);
+            String skillName = actor.getClass().getSimpleName().equals("Warrior") ? "Shield Bash" : "Arcane Blast";
+            System.out.print(actor.getName() + " uses " + skillName + "! -> ");
             System.out.print(victim.getName() + " takes " + dmgAmount + " damage!");
-            if(i < targets.size() - 1) System.out.print(", ");
-            else{
-                System.out.println();
-            }
-        }
-
-        if (statusEffects != null && !statusEffects.isEmpty()) {
-            System.out.print(" → Inflicts: ");
-            for (int i = 0; i < statusEffects.size(); i++) {
+            if (statusEffects != null && !statusEffects.isEmpty())
+            {
                 StatusEffect effect = statusEffects.get(i);
-                System.out.print(effect.getName());
-                if (i < statusEffects.size() - 1) {
-                    System.out.print(", ");
-                }
+                System.out.print("-> inflicted with " + effect.getName());
             }
             System.out.println();
         }
