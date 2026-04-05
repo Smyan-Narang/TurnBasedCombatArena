@@ -21,14 +21,14 @@ public class DisplayOnly {
     }
     public void displayTurnStart(GameStateReadOnly gameState) {
         System.out.println("\n--- Wave " + gameState.currWave() + " | Turn " + gameState.getCurrTurn() + " ---");
-        System.out.println("Player HP: " + gameState.getPlayer().getCurrHp() + "/" + gameState.getPlayer().getMaxHp());
+        System.out.println("Player HP: " + healthBar(gameState.getPlayer().getCurrHp(),gameState.getPlayer().getMaxHp()));
 
         for (int i = 0; i < gameState.getCurrEnemies().size(); i++) {
             Combatant enemy = gameState.getCurrEnemies().get(i);
             if (enemy.getCurrHp() <= 0) {
                 System.out.println((i + 1) + ". " + enemy.getName() + ": DEAD");
             } else {
-                System.out.println((i + 1) + ". " + enemy.getName() + ": " + enemy.getCurrHp() + "/" + enemy.getMaxHp() + " HP");
+                System.out.println((i + 1) + ". " + enemy.getName() + ": " + healthBar(enemy.getCurrHp(),enemy.getMaxHp()));
             }
         }
         System.out.println();
@@ -212,4 +212,17 @@ public class DisplayOnly {
             System.out.println("Enemy at index " + enemyIndex + " not found!");
         }
     }
+
+    private static String healthBar(int hp, int maxHp) {
+        int totalBars = 20;
+        int filledBars = (int) ((hp / (double) maxHp) * totalBars);
+        StringBuilder bar = new StringBuilder("[");
+        for (int i = 0; i < totalBars; i++) {
+            if (i < filledBars) bar.append("█");
+            else bar.append(" ");
+        }
+        bar.append("]");
+        return bar.toString();
+    }
+
 }
