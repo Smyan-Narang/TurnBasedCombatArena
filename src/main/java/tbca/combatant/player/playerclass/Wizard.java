@@ -2,6 +2,7 @@ package tbca.combatant.player.playerclass;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import tbca.combatant.Combatant;
 import tbca.combatant.player.Player;
 import tbca.effect.ArcaneBlastBuff;

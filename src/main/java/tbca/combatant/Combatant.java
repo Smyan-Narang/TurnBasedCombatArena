@@ -5,7 +5,6 @@ import java.util.List;
 
 import tbca.effect.StatusEffect;
 import tbca.item.Item;
-import tbca.item.ItemType;
 
 public abstract class Combatant {
     private final String name;
@@ -21,6 +20,7 @@ public abstract class Combatant {
     private boolean invulnerable = false;
     private int specialSkillCooldown = 0;
     private final List<StatusEffect> effects = new ArrayList<>();
+    private final List<Item> inventory = new ArrayList<>();
 
     protected Combatant(String name, int maxHp, int attack, int defense, int speed) {
         this.name = name;
@@ -37,11 +37,27 @@ public abstract class Combatant {
         this.setCurrHp(hp);
     }
 
-    public Item consumeItem(ItemType type){
-        return null;
+
+    public void addItem(Item item) {
+        if (inventory.size() < 2) {
+            inventory.add(item);
+        }
     }
 
+    public List<Item> getInventory() {
+        return java.util.Collections.unmodifiableList(inventory);
+    }
 
+    public boolean hasItems() { return !inventory.isEmpty(); }
+
+    public Item consumeItem(tbca.item.ItemType itemType){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getType() == itemType){
+                return inventory.remove(i);
+            }
+        }
+        return null;
+    }
 
     public void addStatusEffect(StatusEffect effect) {
         this.effects.add(effect);
